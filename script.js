@@ -521,7 +521,7 @@ function compareThreshold(index) {
 document.getElementById('btnIRData').addEventListener('click', function () {
     // Lấy thông tin từ các cảm biến IR
     const irIds = ['ir2L', 'ir0L', 'ir1R', 'ir3R'];
-    let header = "Val\t" + irIds.join("\t") + "\tThreshold\t" + irIds.join("\t") + "\tMin\t" + irIds.join("\t") + "\tMax\t" + irIds.join("\t") + "\n";
+    // let header = "Val\t" + irIds.join("\t") + "\tThreshold\t" + irIds.join("\t") + "\tMin\t" + irIds.join("\t") + "\tMax\t" + irIds.join("\t") + "\n";
     let values = [];
     let thresholds = [];
     let mins = [];
@@ -539,7 +539,7 @@ document.getElementById('btnIRData').addEventListener('click', function () {
     let data = `Val\t${values.join("\t")}\tThreshold\t${thresholds.join("\t")}\tMin\t${mins.join("\t")}\tMax\t${maxs.join("\t")}\n`;
 
     // Ghép tiêu đề và dữ liệu
-    data = header + data;
+    // data = header + data;
 
     // Hiển thị popup
     const popup = document.getElementById('popup');
