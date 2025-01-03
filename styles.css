@@ -361,6 +361,21 @@ body {
     border-radius: 5px;
     place-self: center;
   }
+
+  .grid-item {
+    text-align: center;
+  }
+
+  .ir-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
   
   .Gripper{
     grid-column: 6 / span 5; /* Bắt đầu từ cột 6 và chiếm 4 cột */
