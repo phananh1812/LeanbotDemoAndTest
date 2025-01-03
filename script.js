@@ -528,7 +528,7 @@ document.getElementById('btnIRData').addEventListener('click', function () {
 
     for (let i = 0; i < irIds.length; i++) {
         const id = irIds[i];
-        const [value, sensorThreshold , min, max] = getSensorData(i + 4); // Hàm trả dữ liệu 
+        const [value, sensorThreshold , min, max] = getSensorData(i + 6); // Hàm trả dữ liệu 
         data += `${id}\t${value}\t${sensorThreshold }\t${min}\t${max}\n`;
     }
 
