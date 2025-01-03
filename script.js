@@ -553,6 +553,9 @@ document.getElementById('closePopup').addEventListener('click', function () {
 function getSensorData(i) {
     const value = arrString[i + 1];
     const threshold = threshold[i-4];
+
+    const value = 0;
+    const threshold = 0;
     const min = 0; 
     const max = 0;
     return [value, threshold, min, max];
