@@ -534,7 +534,9 @@ document.getElementById('btnIRData').addEventListener('click', function () {
     
     // Hiển thị popup và sao chép dữ liệu
     const popup = document.getElementById('popup');
-    popup.style.cssText = 'display: block; top: 100px; left: 100px;';
+    popup.style.display = 'block';
+    popup.style.transform = 'translate(-50%, -50%)'; // Đảm bảo giữ giữa màn hình
+    
     document.getElementById('popupContent').innerText = data;
     navigator.clipboard.writeText(data).catch(console.error);
 });
