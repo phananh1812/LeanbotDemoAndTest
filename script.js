@@ -518,21 +518,16 @@ function compareThreshold(index) {
     return irValue > threshold[index] ? 1 : 0;
 }
 
+
+
+
 document.getElementById('btnIRData').addEventListener('click', function () {
     // Lấy thông tin từ các cảm biến IR
     const irIds = ['ir2L', 'ir0L', 'ir1R', 'ir3R'];
     let data = "Sensor\tValue\tThreshold\tMin\tMax\n";
 
-    // for (let i = 4; i < 12; i++) {
-    //     let element = document.getElementById(elementIds[i]);
-    //     let paragraph = element.querySelector('p'); // Tìm phần tử <p> bên trong div
-
-    //     paragraph.innerHTML = arrString[i + 1] + "<br>" + elementIds[i] + "<br>" +  threshold[i-4];
-    // }
-
     for (let i = 0; i < irIds.length; i++) {
         const id = irIds[i];
-        // const element = document.getElementById(id).querySelector('p');
         const [value, sensorThreshold , min, max] = getSensorData(i + 4); // Hàm trả dữ liệu 
         data += `${id}\t${value}\t${sensorThreshold }\t${min}\t${max}\n`;
     }
@@ -556,15 +551,22 @@ document.getElementById('closePopup').addEventListener('click', function () {
     document.getElementById('popup').style.display = 'none';
 });
 
+// Mảng lưu giá trị nhỏ nhất và lớn nhất cho từng cảm biến
+let sensorMin = Array(4).fill(255); 
+let sensorMax = Array(4).fill(0); 
+
 // Giá trị của cảm biến
 function getSensorData(i) {
     const value = arrString[i + 1];
-    const sensorThreshold  = threshold[i-4];
+    const sensorThreshold  = threshold[i - 4];
 
-    // const value = 0;
-    // const threshold = 0;
-    const min = 0; 
-    const max = 0;
+    // Cập nhật min và max dựa trên giá trị value hiện tại
+    sensorMin[i - 4] = Math.min(sensorMin[i - 4], value);
+    sensorMax[i - 4] = Math.max(sensorMax[i - 4], value);
+    
+    const min = sensorMin[i - 4];
+    const max = sensorMax[i - 4];
+
     return [value, sensorThreshold , min, max];
 }
 
