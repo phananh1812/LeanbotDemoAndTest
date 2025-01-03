@@ -524,12 +524,6 @@ document.getElementById('btnIRData').addEventListener('click', function () {
         data += `${id}\t${value}\t${threshold}\t${min}\t${max}\n`;
     }
 
-    // irIds.forEach(id => {
-    //     const element = document.getElementById(id).querySelector('p');
-    //     const [value, threshold, min, max] = getSensorData(id); // Hàm trả dữ liệu
-    //     data += `${id}\t${value}\t${threshold}\t${min}\t${max}\n`;
-    // });
-
     // Hiển thị popup
     const popup = document.getElementById('popup');
     popup.style.display = 'block';
@@ -552,10 +546,10 @@ document.getElementById('closePopup').addEventListener('click', function () {
 // Giá trị của cảm biến
 function getSensorData(i) {
     const value = arrString[i + 1];
-    const threshold = threshold[i-4];
+    // const threshold = threshold[i-4];
 
     // const value = 0;
-    // const threshold = 0;
+    const threshold = 0;
     const min = 0; 
     const max = 0;
     return [value, threshold, min, max];
