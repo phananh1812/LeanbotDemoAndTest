@@ -39,17 +39,17 @@
     </nav>
     <div class="grid-container">
         <div class="container-slider" id="ctn-slider"></div>
-        <div class="distance-text"><p id="distanceValue" style="margin:0px 0px";>HC-SR04 Ultrasonic distance</p></div>
+        <div class="distance-text"><p id="HCSR04" style="margin:0px 0px";>HC-SR04 Ultrasonic distance</p></div>
         <div class="distance-slider" id="slider" ><input type="range" id="distanceSlider" min="0" max="100" value="0" /></div>
         <div class="slider-text10"><p id="text10cm" style="margin:0px 0px";>10cm</p></div>
         <div class="slider-text30"><p id="text30cm" style="margin:0px 0px";>30cm</p></div>
-        <div class="angleL"><button class = "buttonGripper" onclick = "buttonGripperLeft()"><p id="textangleLeft" style="margin:0px 0px";>Left</p></button></div>
-        <div class="angle"><p id="textangle" style="margin:0px 0px";>Gripper</p></div>
-        <div class="angleR"><button class = "buttonGripper" onclick = "buttonGripperRight()"><p id="textangleRight" style="margin:0px 0px";>Right</p></button></div>
+        <div class="angleL"><button class = "buttonGripper" onclick = "buttonGripperLeft()"><p id="Gripper_Left" style="margin:0px 0px";>Left</p></button></div>
+        <div class="angle"><p id="Gripper" style="margin:0px 0px";>Gripper</p></div>
+        <div class="angleR"><button class = "buttonGripper" onclick = "buttonGripperRight()"><p id="Gripper_Right_Text" style="margin:0px 0px";>Right</p></button></div>
         <div class="angleLvalue"><p id="textangleL" style="margin:0px 0px";></p></div>
         <div class="angleRvalue"><p id="textangleR" style="margin:0px 0px";></p></div>
         <div class = "GripperCalibration" id = "GripperCalibration">
-            <button class = "buttonGripperCalibration" onclick = "GripperCalibration()"><p id = "textGripperCalibration" style="margin:0px 0px">Gripper Calibration</p></button>
+            <button class = "buttonGripperCalibration" onclick = "GripperCalibration()"><p id = "Gripper_Calibration" style="margin:0px 0px">Gripper Calibration</p></button>
         </div>
         <div id="tab1" class="contentCalibration" style="display:none;">
             <div class="grid-containerCalibration">
@@ -157,8 +157,8 @@
         <div class="testObjectfollow">
             <button onclick="TestObjectfollow()" class="buttonTest" id="testObjectfollow"><p  style="margin:0px 0px";>Object follow Demo</p></button>
         </div>
-        <div class="testIRLineCalibration">
-            <button onclick="TestIRLineCalibration()" class="buttonIRLine" id="testIRLineCalibration"><p  style="margin:0px 0px";>IRLine Manual Calibration</p></button>
+        <div class="IR_LineCalibration">
+            <button onclick="TestIRLineCalibration()" class="buttonIRLine" id="IR_LineCalibration"><p  style="margin:0px 0px";>IRLine Manual Calibration</p></button>
         </div>
     </div>
     <br>
@@ -186,7 +186,7 @@
     </div>
   
 </body>
-    <!-- <script src="https://lesysang1322002.github.io/Leanbot-BLE-IoT/Leanbot.js"></script> -->
+    <script src="https://lesysang1322002.github.io/Leanbot-BLE-IoT/Leanbot.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
-    <script type = "text/javascript" src="script.js"></script>
+    <script type = "text/javascript" src="scriptcopy.js"></script>
 </html>
