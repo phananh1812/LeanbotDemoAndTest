@@ -551,7 +551,7 @@ document.getElementById('closePopup').addEventListener('click', function () {
 
 // Giá trị của cảm biến
 function getSensorData(i) {
-    const value = arrString[i + 1]
+    const value = arrString[i + 1];
     const threshold = threshold[i-4];
     const min = 0; 
     const max = 0;
