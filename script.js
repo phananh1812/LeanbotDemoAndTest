@@ -517,10 +517,10 @@ document.getElementById('btnIRData').addEventListener('click', function () {
     //     paragraph.innerHTML = arrString[i + 1] + "<br>" + elementIds[i] + "<br>" +  threshold[i-4];
     // }
 
-    for (let id = 0; id < irIds.length; id++) {
-        const i = irIds[id];
+    for (let i = 0; i < irIds.length; i++) {
+        const id = irIds[i];
         // const element = document.getElementById(id).querySelector('p');
-        const [value, threshold, min, max] = getSensorData(i + 5); // Hàm trả dữ liệu giả định
+        const [value, threshold, min, max] = getSensorData(i + 5); // Hàm trả dữ liệu 
         data += `${id}\t${value}\t${threshold}\t${min}\t${max}\n`;
     }
 
