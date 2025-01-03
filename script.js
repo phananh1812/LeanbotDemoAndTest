@@ -505,6 +505,19 @@ function handleChangedValue(event) {
     }
 }
 
+let threshold = Array(8).fill(map(100, 0, 768, 0, 255));
+
+function map(value, in_min, in_max, out_min, out_max) {
+    return parseInt((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+}
+
+function compareThreshold(index) {
+    let irValue = parseInt(arrString[index + 5]);
+    threshold[index] = parseFloat((Math.min(threshold[index], irValue * 1.8))).toFixed(1);
+    // console.log("Threshold " + index + ": " + threshold[index]);
+    return irValue > threshold[index] ? 1 : 0;
+}
+
 document.getElementById('btnIRData').addEventListener('click', function () {
     // Lấy thông tin từ các cảm biến IR
     const irIds = ['ir2L', 'ir0L', 'ir1R', 'ir3R'];
@@ -520,8 +533,8 @@ document.getElementById('btnIRData').addEventListener('click', function () {
     for (let i = 0; i < irIds.length; i++) {
         const id = irIds[i];
         // const element = document.getElementById(id).querySelector('p');
-        const [value, threshold, min, max] = getSensorData(i + 5); // Hàm trả dữ liệu 
-        data += `${id}\t${value}\t${threshold}\t${min}\t${max}\n`;
+        const [value, sensorThreshold , min, max] = getSensorData(i + 4); // Hàm trả dữ liệu 
+        data += `${id}\t${value}\t${sensorThreshold }\t${min}\t${max}\n`;
     }
 
     // Hiển thị popup
@@ -546,27 +559,13 @@ document.getElementById('closePopup').addEventListener('click', function () {
 // Giá trị của cảm biến
 function getSensorData(i) {
     const value = arrString[i + 1];
-    // const threshold = threshold[i-4];
+    const sensorThreshold  = threshold[i-4];
 
     // const value = 0;
-    const threshold = 0;
+    // const threshold = 0;
     const min = 0; 
     const max = 0;
-    return [value, threshold, min, max];
-}
-
-
-let threshold = Array(8).fill(map(100, 0, 768, 0, 255));
-
-function map(value, in_min, in_max, out_min, out_max) {
-    return parseInt((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
-}
-
-function compareThreshold(index) {
-    let irValue = parseInt(arrString[index + 5]);
-    threshold[index] = parseFloat((Math.min(threshold[index], irValue * 1.8))).toFixed(1);
-    // console.log("Threshold " + index + ": " + threshold[index]);
-    return irValue > threshold[index] ? 1 : 0;
+    return [value, sensorThreshold , min, max];
 }
 
 function handleBorderChange(i, element, check, lastCommand, timeout, value) {
