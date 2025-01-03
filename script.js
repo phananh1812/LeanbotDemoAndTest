@@ -519,114 +519,39 @@ function compareThreshold(index) {
 }
 
 document.getElementById('btnIRData').addEventListener('click', function () {
-    // Lấy thông tin từ các cảm biến IR
-    const irIds = ['ir2L', 'ir0L', 'ir1R', 'ir3R'];
-    // let header = "Val\t" + irIds.join("\t") + "\tThreshold\t" + irIds.join("\t") + "\tMin\t" + irIds.join("\t") + "\tMax\t" + irIds.join("\t") + "\n";
-    let values = [];
-    let thresholds = [];
-    let mins = [];
-    let maxs = [];
+    let values = [], thresholds = [], mins = [], maxs = [];
 
-    for (let i = 0; i < irIds.length; i++) {
-        const [value, sensorThreshold, min, max] = getSensorData(i + 6); // Hàm trả dữ liệu
+    for (let i = 0; i < 4; i++) {
+        let [value, sensorThreshold, min, max] = getSensorData(i + 6);
         values.push(value);
         thresholds.push(sensorThreshold);
         mins.push(min);
         maxs.push(max);
     }
 
-    // Tạo dữ liệu 1 dòng
-    let data = `Val\t${values.join("\t")}\tThreshold\t${thresholds.join("\t")}\tMin\t${mins.join("\t")}\tMax\t${maxs.join("\t")}\n`;
-
-    // Ghép tiêu đề và dữ liệu
-    // data = header + data;
-
-    // Hiển thị popup
+    // Kết hợp dữ liệu thành 1 dòng
+    const data = `Val\t${values.join("\t")}\tThreshold\t${thresholds.join("\t")}\tMin\t${mins.join("\t")}\tMax\t${maxs.join("\t")}`;
+    
+    // Hiển thị popup và sao chép dữ liệu
     const popup = document.getElementById('popup');
-    popup.style.display = 'block';
-    popup.style.top = '100px';
-    popup.style.left = '100px';
+    popup.style.cssText = 'display: block; top: 100px; left: 100px;';
     document.getElementById('popupContent').innerText = data;
-
-    // Sao chép vào clipboard
-    navigator.clipboard.writeText(data).then(() => {
-        console.log('Data copied to clipboard');
-    }).catch(err => {
-        console.error('Could not copy text: ', err);
-    });
+    navigator.clipboard.writeText(data).catch(console.error);
 });
 
-document.getElementById('closePopup').addEventListener('click', function () {
+document.getElementById('closePopup').addEventListener('click', () => {
     document.getElementById('popup').style.display = 'none';
 });
 
-// Mảng lưu giá trị nhỏ nhất và lớn nhất cho từng cảm biến
-let sensorMin = Array(4).fill(255); 
-let sensorMax = Array(4).fill(0); 
+let sensorMin = Array(4).fill(255), sensorMax = Array(4).fill(0);
 
-// Giá trị của cảm biến
 function getSensorData(i) {
-    const value = parseFloat(arrString[i + 1]); 
-    const sensorThreshold = threshold[i - 4];
-
-    // Cập nhật min và max dựa trên giá trị value hiện tại
+    const value = parseFloat(arrString[i + 1]), sensorThreshold = threshold[i - 6];
     sensorMin[i - 6] = Math.min(sensorMin[i - 6], value);
     sensorMax[i - 6] = Math.max(sensorMax[i - 6], value);
-
-    const min = sensorMin[i - 6];
-    const max = sensorMax[i - 6];
-
-    return [value, sensorThreshold, min, max];
+    return [value, sensorThreshold, sensorMin[i - 6], sensorMax[i - 6]];
 }
 
-// document.getElementById('btnIRData').addEventListener('click', function () {
-//     // Lấy thông tin từ các cảm biến IR
-//     const irIds = ['ir2L', 'ir0L', 'ir1R', 'ir3R'];
-//     let data = "Sensor\tValue\tThreshold\tMin\tMax\n";
-
-//     for (let i = 0; i < irIds.length; i++) {
-//         const id = irIds[i];
-//         const [value, sensorThreshold , min, max] = getSensorData(i + 6); // Hàm trả dữ liệu 
-//         data += `${id}\t${value}\t${sensorThreshold }\t${min}\t${max}\n`;
-//     }
-
-//     // Hiển thị popup
-//     const popup = document.getElementById('popup');
-//     popup.style.display = 'block';
-//     popup.style.top = '100px';
-//     popup.style.left = '100px';
-//     document.getElementById('popupContent').innerText = data;
-
-//     // Sao chép vào clipboard
-//     navigator.clipboard.writeText(data).then(() => {
-//         console.log('Data copied to clipboard');
-//     }).catch(err => {
-//         console.error('Could not copy text: ', err);
-//     });
-// });
-
-// document.getElementById('closePopup').addEventListener('click', function () {
-//     document.getElementById('popup').style.display = 'none';
-// });
-
-// // Mảng lưu giá trị nhỏ nhất và lớn nhất cho từng cảm biến
-// let sensorMin = Array(6).fill(255); 
-// let sensorMax = Array(6).fill(0); 
-
-// // Giá trị của cảm biến
-// function getSensorData(i) {
-//     const value = arrString[i + 1];
-//     const sensorThreshold  = threshold[i - 4];
-
-//     // Cập nhật min và max dựa trên giá trị value hiện tại
-//     sensorMin[i - 4] = Math.min(sensorMin[i - 4], value);
-//     sensorMax[i - 4] = Math.max(sensorMax[i - 4], value);
-    
-//     const min = sensorMin[i - 4];
-//     const max = sensorMax[i - 4];
-
-//     return [value, sensorThreshold , min, max];
-// }
 
 function handleBorderChange(i, element, check, lastCommand, timeout, value) {
     if (!check[i]){
