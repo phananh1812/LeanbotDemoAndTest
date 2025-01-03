@@ -407,7 +407,7 @@ function handleChangedValue(event) {
                     let element = document.getElementById(elementIds[i]);
                     let paragraph = element.querySelector('p'); // Tìm phần tử <p> bên trong div
 
-                    paragraph.innerHTML = elementIds[i] + "<br>" + arrString[i + 1];
+                    paragraph.innerHTML = arrString[i + 1] + "<br>" + elementIds[i];
                 }
                 // Comment chuyển màu viền của Touch
                 for (let i = 4; i < elementIds.length; i++) {
