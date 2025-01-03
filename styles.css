@@ -329,8 +329,8 @@ body {
   .grid-item.button {
     grid-column: 8; 
     grid-row: 9; 
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     place-self: center;
     display: flex;
     align-items: center;
@@ -395,8 +395,6 @@ body {
     font-size: 14px;
     font-weight: bold;
     padding: 10px 20px;
-    border: 2px solid #CCCCCC;
-    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
