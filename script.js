@@ -505,6 +505,46 @@ function handleChangedValue(event) {
     }
 }
 
+document.getElementById('btnIRData').addEventListener('click', function () {
+    // Lấy thông tin từ các cảm biến IR
+    const irIds = ['ir2L', 'ir0L', 'ir1R', 'ir3R'];
+    let data = "Sensor\tValue\tThreshold\tMin\tMax\n";
+
+    irIds.forEach(id => {
+        const element = document.getElementById(id).querySelector('p');
+        const [value, threshold, min, max] = getSensorData(id); // Hàm trả dữ liệu giả định
+        data += `${id}\t${value}\t${threshold}\t${min}\t${max}\n`;
+    });
+
+    // Hiển thị popup
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
+    popup.style.top = '100px';
+    popup.style.left = '100px';
+    document.getElementById('popupContent').innerText = data;
+
+    // Sao chép vào clipboard
+    navigator.clipboard.writeText(data).then(() => {
+        console.log('Data copied to clipboard');
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+    });
+});
+
+document.getElementById('closePopup').addEventListener('click', function () {
+    document.getElementById('popup').style.display = 'none';
+});
+
+// Hàm giả lập để trả giá trị của cảm biến
+function getSensorData(id) {
+    // Giá trị mẫu
+    const value = Math.floor(Math.random() * 100); // Giá trị ngẫu nhiên từ 0-100
+    const threshold = Math.floor(Math.random() * 50); // Ngưỡng ngẫu nhiên từ 0-50
+    const min = Math.min(value, threshold); // Giá trị min
+    const max = Math.max(value, threshold); // Giá trị max
+    return [value, threshold, min, max];
+}
+
 
 let threshold = Array(8).fill(map(100, 0, 768, 0, 255));
 
