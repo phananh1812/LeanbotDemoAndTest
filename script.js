@@ -552,8 +552,8 @@ document.getElementById('closePopup').addEventListener('click', function () {
 });
 
 // Mảng lưu giá trị nhỏ nhất và lớn nhất cho từng cảm biến
-let sensorMin = Array(4).fill(255); 
-let sensorMax = Array(4).fill(0); 
+let sensorMin = Array(6).fill(255); 
+let sensorMax = Array(6).fill(0); 
 
 // Giá trị của cảm biến
 function getSensorData(i) {
