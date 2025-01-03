@@ -510,11 +510,25 @@ document.getElementById('btnIRData').addEventListener('click', function () {
     const irIds = ['ir2L', 'ir0L', 'ir1R', 'ir3R'];
     let data = "Sensor\tValue\tThreshold\tMin\tMax\n";
 
-    irIds.forEach(id => {
-        const element = document.getElementById(id).querySelector('p');
-        const [value, threshold, min, max] = getSensorData(id); // Hàm trả dữ liệu giả định
+    // for (let i = 4; i < 12; i++) {
+    //     let element = document.getElementById(elementIds[i]);
+    //     let paragraph = element.querySelector('p'); // Tìm phần tử <p> bên trong div
+
+    //     paragraph.innerHTML = arrString[i + 1] + "<br>" + elementIds[i] + "<br>" +  threshold[i-4];
+    // }
+
+    for (let i = 0; i < irIds.length; i++) {
+        const id = irIds[i];
+        // const element = document.getElementById(id).querySelector('p');
+        const [value, threshold, min, max] = getSensorData(i + 5); // Hàm trả dữ liệu 
         data += `${id}\t${value}\t${threshold}\t${min}\t${max}\n`;
-    });
+    }
+
+    // irIds.forEach(id => {
+    //     const element = document.getElementById(id).querySelector('p');
+    //     const [value, threshold, min, max] = getSensorData(id); // Hàm trả dữ liệu
+    //     data += `${id}\t${value}\t${threshold}\t${min}\t${max}\n`;
+    // });
 
     // Hiển thị popup
     const popup = document.getElementById('popup');
@@ -535,13 +549,15 @@ document.getElementById('closePopup').addEventListener('click', function () {
     document.getElementById('popup').style.display = 'none';
 });
 
-// Hàm giả lập để trả giá trị của cảm biến
-function getSensorData(id) {
-    // Giá trị mẫu
-    const value = Math.floor(Math.random() * 100); // Giá trị ngẫu nhiên từ 0-100
-    const threshold = Math.floor(Math.random() * 50); // Ngưỡng ngẫu nhiên từ 0-50
-    const min = Math.min(value, threshold); // Giá trị min
-    const max = Math.max(value, threshold); // Giá trị max
+// Giá trị của cảm biến
+function getSensorData(i) {
+    // const value = arrString[i + 1];
+    // const threshold = threshold[i-4];
+
+    const value = 0;
+    const threshold = 0;
+    const min = 0; 
+    const max = 0;
     return [value, threshold, min, max];
 }
 
